@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+EmployeeSQL/Code/PasswordPgAdmin.ipynb
+PasswordPgAdmin.ipynb
