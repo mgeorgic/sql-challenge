@@ -62,6 +62,8 @@ WHERE first_name = 'Hercules' AND last_name LIKE 'B%';
 
 -- 6. List all employees in the Sales department, including their 
 -- employee number, last name, first name, and department name.
+-- NOTES: Inner join to collect the sales dept_name, not just on columns
+--		use where statement for sales department  only
 SELECT
 e.emp_no,
 e.last_name,
@@ -70,7 +72,6 @@ de.dept_no
 FROM employees as e
 LEFT JOIN dept_emp as de
 on e.emp_no = de.emp_no
--- use where statement for sales department  only
 INNER JOIN departments as d
 on d.dept_no=de.dept_no
 WHERE d.dept_name = 'Sales';
@@ -78,19 +79,21 @@ WHERE d.dept_name = 'Sales';
 -- 7. List all employees in the Sales and Development departments, 
 -- including their employee number, last name, first name, and department name.
 SELECT 
-employees.emp_no, 
-employees.last_name, 
-employees.first_name,
-dept_emp.dept_no
-FROM employees 
-LEFT JOIN dept_emp 
-ON employees.emp_no=dept_emp.emp_no
-INNER JOIN departments 
-ON departments.dept_no=dept_emp.dept_no
-WHERE departments.dept_name in ('Sales', 'Development')
+e.emp_no, 
+e.last_name, 
+e.first_name,
+de.dept_no
+FROM employees as e
+LEFT JOIN dept_emp as de 
+ON e.emp_no=de.emp_no
+INNER JOIN departments as d
+ON d.dept_no=de.dept_no
+WHERE d.dept_name in ('Sales', 'Development')
 
 -- 8. In descending order, list the frequency count of employee last 
 -- names, i.e., how many employees share each last name.
+-- NOTES: select column last name and count all (*) naming the column as 
+-- 			freq_last_name. Then groupby last name and put freq_last_name in descending order
 SELECT last_name,
 COUNT(*) AS freq_last_name
 FROM employees
