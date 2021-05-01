@@ -30,7 +30,6 @@ CREATE TABLE departments (
 );
 
 CREATE TABLE dept_emp (
-    id serial   NOT NULL,
     emp_no int NOT NULL,
     dept_no VARCHAR(10) NOT NULL,
     CONSTRAINT pk_dept_emp PRIMARY KEY (id)
